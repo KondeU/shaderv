@@ -1,4 +1,3 @@
-#include "../Auxiliary.hpp"
 #include "MainWindow.h"
 
 int main(int argc, char* argv[])
@@ -13,7 +12,7 @@ int main(int argc, char* argv[])
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QApplication application(argc, argv);
-    application.setApplicationName("shaderv");
+    application.setApplicationName(APP_NAME);
 
     MainWindow mainWindow;
     mainWindow.show();
