@@ -44,6 +44,30 @@ if "%BUILD_BITS%"=="x64" (set BUILD_COMPILE=%BUILD_COMPILE% Win64)
 
 if exist "build\dependency" (goto _tag_build_trace_shaderv)
 
+:_tag_build_trace_darkss
+rem ===== build trace <3rd: QDarkStyleSheet> =====
+
+mkdir build\dependency\darkss\rc
+copy darkss\QDarkStyleSheet-2.8.1\qdarkstyle\style.qrc build\dependency\darkss /Y
+copy darkss\QDarkStyleSheet-2.8.1\qdarkstyle\style.qss build\dependency\darkss /Y
+xcopy darkss\QDarkStyleSheet-2.8.1\qdarkstyle\rc build\dependency\darkss\rc /E /Y
+
+:_tag_build_trace_qtads
+rem ===== build trace <3rd: QtAdvancedDockingSystem> =====
+
+mkdir build\qtads
+cd build\qtads
+cmake -G "%BUILD_COMPILE%" %BUILD_ARCH_ARG% ^
+-DCMAKE_INSTALL_PREFIX=%~dp0..\build\dependency\qtads ^
+../../qtads/Qt-Advanced-Docking-System-3.7.1
+cmake --build . --config %BUILD_TYPE% -j 8
+cmake --install . --config %BUILD_TYPE%
+set QADS_BUILD_BITS=%BUILD_BITS%
+if not "%BUILD_BITS%"=="x64" (set QADS_BUILD_BITS=Win32)
+copy %QADS_BUILD_BITS%\bin\%BUILD_TYPE%\qtadvanceddocking.pdb ^
+..\dependency\qtads\bin /Y
+cd ..\..
+
 :_tag_build_trace_nodes
 rem ===== build trace <3rd: nodeeditor> =====
 
@@ -54,6 +78,9 @@ cmake -G "%BUILD_COMPILE%" %BUILD_ARCH_ARG% -DBUILD_TESTING=OFF ^
 ../../nodes/nodeeditor-2.1.3
 cmake --build . --config %BUILD_TYPE% -j 8
 cmake --install . --config %BUILD_TYPE%
+mkdir ..\dependency\nodes\bin
+copy bin\%BUILD_TYPE%\nodes.dll ..\dependency\nodes\bin /Y
+copy bin\%BUILD_TYPE%\nodes.pdb ..\dependency\nodes\bin /Y
 cd ..\..
 
 :_tag_build_trace_shaderv
