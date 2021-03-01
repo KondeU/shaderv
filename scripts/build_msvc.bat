@@ -113,6 +113,7 @@ copy ..\shaderv\%BUILD_TYPE%\*.pdb . /Y
 copy ..\shaderv\auxiliary\dfx\%BUILD_TYPE%\*.dll . /Y
 copy ..\shaderv\auxiliary\dfx\%BUILD_TYPE%\*.pdb . /Y
 mkdir runlogs
+mkdir states
 rem deploy qt program
 rem [vcredist(we do not set VCINSTALLDIR)]
 %QTDIR%\bin\windeployqt.exe shaderv.exe
