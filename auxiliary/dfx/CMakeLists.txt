@@ -10,9 +10,7 @@ add_definitions(-D_DFX_API)
 file(GLOB_RECURSE INC *.h)
 file(GLOB_RECURSE SRC *.cpp)
 
-if(USE_SOURCE_GROUP)
-  source_group("inc" FILES ${INC})
-  source_group("src" FILES ${SRC})
-endif()
+source_group("inc" FILES ${INC})
+source_group("src" FILES ${SRC})
 
 add_library(dfx SHARED ${SRC} ${INC})
