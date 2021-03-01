@@ -88,6 +88,17 @@ rem ===== build trace <shaderv> =====
 
 mkdir build\shaderv
 cd build\shaderv
+set BUILD_SHADERV_ARGS=
+if "%BUILD_TYPE%"=="Debug" (
+set BUILD_SHADERV_ARGS=%BUILD_SHADERV_ARGS% -DSHADERV_USE_CONSOLE=ON
+)
+::set BUILD_SHADERV_ARGS=%BUILD_SHADERV_ARGS% ^
+::-D*_DIR=%~dp0..\build\dependency\qtads\lib\cmake\qtadvanceddocking
+set BUILD_SHADERV_ARGS=%BUILD_SHADERV_ARGS% ^
+-DNodeEditor_DIR=%~dp0..\build\dependency\nodes\lib\cmake\NodeEditor
+cmake -G "%BUILD_COMPILE%" %BUILD_ARCH_ARG% ^
+%BUILD_SHADERV_ARGS% ../../shaderv
+cmake --build . --config %BUILD_TYPE% -j 8
 cd ..\..
 
 :_tag_archive
@@ -95,5 +106,11 @@ rem ===== archive trace =====
 
 mkdir build\archive
 cd build\archive
-%QTDIR%\bin\windeployqt.exe
+copy ..\dependency\qtads\bin\* . /Y
+copy ..\dependency\nodes\bin\* . /Y
+copy ..\shaderv\%BUILD_TYPE%\*.exe . /Y
+copy ..\shaderv\%BUILD_TYPE%\*.pdb . /Y
+rem deploy qt program
+rem [vcredist(we do not set VCINSTALLDIR)]
+%QTDIR%\bin\windeployqt.exe shaderv.exe
 cd ..\..
