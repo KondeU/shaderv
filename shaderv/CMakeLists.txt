@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(shaderv)
 
+add_subdirectory(../auxiliary auxiliary)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -41,6 +43,7 @@ file(GLOB_RECURSE GRAPH graph/*.cpp graph/*.hpp graph/*.h)
 add_executable(shaderv ${GUI} ${RES} ${CORE} ${GRAPH})
 target_link_libraries(shaderv Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(shaderv qtadvanceddocking NodeEditor::nodes)
+target_link_libraries(shaderv dfx)
 
 if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.16.0")
   target_precompile_headers(shaderv PRIVATE graph/QtHeaders.hpp)
