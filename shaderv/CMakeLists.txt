@@ -37,10 +37,10 @@ endif()
 file(GLOB_RECURSE GUI *.ui)
 file(GLOB_RECURSE RES *.qrc)
 
-file(GLOB_RECURSE CORE core/*.cpp  core/*.hpp  core/*.h)
-file(GLOB_RECURSE UI     ui/*.cpp    ui/*.hpp    ui/*.h)
+file(GLOB_RECURSE MAT material/*.cpp material/*.hpp material/*.h)
+file(GLOB_RECURSE GUI      gui/*.cpp      gui/*.hpp      gui/*.h)
 
-add_executable(shaderv ${GUI} ${RES} ${CORE} ${UI})
+add_executable(shaderv ${GUI} ${RES} ${MAT} ${GUI})
 target_link_libraries(shaderv Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(shaderv qtadvanceddocking NodeEditor::nodes)
 target_link_libraries(shaderv dfx)
