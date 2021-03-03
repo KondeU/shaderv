@@ -1,7 +1,7 @@
 #ifndef _VIEW_MANAGER_HPP_
 #define _VIEW_MANAGER_HPP_
 
-#include "../GraphBasic.hpp"
+#include "../UiBasic.hpp"
 
 class ViewManager {
 public:

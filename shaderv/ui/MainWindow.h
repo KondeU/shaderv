@@ -2,7 +2,7 @@
 #define _MAIN_WINDOW_H_
 
 //#include "ui_MainWindow.h"
-#include "GraphBasic.hpp"
+#include "UiBasic.hpp"
 
 class MainWindow final : public QMainWindow {
 public:

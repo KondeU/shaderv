@@ -1,5 +1,5 @@
 // NB: Do not include this header file directly,
-//     please include GraphBasic.h instead, otherwise
+//     please include UiBasic.h instead, otherwise
 //     the memory leak tracing will be unavailable!!!
 #ifndef _QT_HEADERS_HPP_
 #define _QT_HEADERS_HPP_
