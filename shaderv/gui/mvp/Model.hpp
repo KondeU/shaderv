@@ -6,6 +6,7 @@
 class Model : public QObject {
 public:
     virtual ~Model() = default;
+    virtual bool Init() = 0;
 
 protected:
     Model() = default;

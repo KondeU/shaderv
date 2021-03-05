@@ -16,8 +16,11 @@ public:
         if (it != presenters.end()) {
             return false;
         }
-        presenters[typeid(P).name()] =
-            std::make_unique<P>(view, args...);
+        auto presenter = std::make_unique<P>(view, args...);
+        if (!presenter->Init()) {
+            return false;
+        }
+        presenters[typeid(P).name()] = std::move(presenter);
         return true;
     }
 

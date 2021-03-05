@@ -14,8 +14,11 @@ public:
         if (it != models.end()) {
             return false;
         }
-        models[typeid(M).name()] =
-            std::make_unique<M>(args...);
+        auto model = std::make_unique<M>(args...);
+        if (!model->Init()) {
+            return false;
+        }
+        models[typeid(M).name()] = std::move(model);
         return true;
     }
 

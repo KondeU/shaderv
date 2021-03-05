@@ -6,6 +6,7 @@
 class Presenter : public QObject {
 public:
     virtual ~Presenter() = default;
+    virtual bool Init() = 0;
 
 protected:
     Presenter() = default;
