@@ -1,9 +1,6 @@
 #ifndef _MODEL_MANAGER_HPP_
 #define _MODEL_MANAGER_HPP_
 
-#include <memory>
-#include <string>
-#include <unordered_map>
 #include "Model.hpp"
 
 class ModelManager {

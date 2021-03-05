@@ -1,7 +1,8 @@
 #ifndef _VIEW_MANAGER_HPP_
 #define _VIEW_MANAGER_HPP_
 
-#include "../UiBasic.hpp"
+#include "ViewCenter.hpp"
+#include "ViewDocker.hpp"
 
 class ViewManager {
 public:

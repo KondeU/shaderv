@@ -1,9 +1,6 @@
 #ifndef _PRESENTER_MANAGER_HPP_
 #define _PRESENTER_MANAGER_HPP_
 
-#include <memory>
-#include <string>
-#include <unordered_map>
 #include "Presenter.hpp"
 
 class PresenterManager {

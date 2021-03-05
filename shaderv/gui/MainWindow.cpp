@@ -1,6 +1,8 @@
 #include "MainWindow.h"
+#include "subs/MGraph.h"
+#include "subs/VGraph.h"
 
-MainWindow::MainWindow()// : dockerManager(*this)
+MainWindow::MainWindow() : vman(*this)
 {
     //ui.setupUi(this);
 
@@ -18,7 +20,11 @@ MainWindow::MainWindow()// : dockerManager(*this)
     //    DockerManager::WindowLocation::RIGHT, *this);
     //auto project = dockerManager.BuildWindow<WProject>(
     //    DockerManager::WindowLocation::BOTTOM, *this);
-    //
+
+    mman.BuildModel<MGraph>();
+
+    auto graph = vman.BuildViewCenter<VGraph>(*mman.ObtainModel<MGraph>());
+
     //ui.menuView->addAction(project->GetToggleCheckableAction());
     //ui.menuView->addAction(hierarchy->GetToggleCheckableAction());
     //ui.menuView->addAction(inspector->GetToggleCheckableAction());

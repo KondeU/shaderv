@@ -4,18 +4,11 @@
 #include "View.hpp"
 
 class ViewCenter : public View {
-public:
-    QWidget* GetStuff() const
-    {
-        return stuff;
-    }
-
 protected:
-    ViewCenter(QWidget* stuff, const QString& uniqueTitleName)
-        : stuff(stuff), View(uniqueTitleName)
+    explicit ViewCenter(const QString& uniqueTitleName)
+        : View(uniqueTitleName)
     {
-        QVBoxLayout* layout = QT_NEW QVBoxLayout;
-        layout->addWidget(stuff);
+        layout = QT_NEW QVBoxLayout;
         layout->setContentsMargins(0, 0, 0, 0);
         layout->setSpacing(0);
         setLayout(layout);
@@ -25,8 +18,19 @@ protected:
     {
     }
 
+    bool SetStuff(QWidget* widget)
+    {
+        if (stuff != nullptr) {
+            return false;
+        }
+        stuff = widget;
+        layout->addWidget(stuff);
+        return true;
+    }
+
 private:
-    QWidget* stuff;
+    QVBoxLayout* layout;
+    QWidget* stuff = nullptr;
 };
 
 #endif
