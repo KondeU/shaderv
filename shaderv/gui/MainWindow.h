@@ -13,9 +13,10 @@ public:
     ~MainWindow() override;
 
 private:
-    ModelManager     mman;
-    ViewManager      vman;
-    PresenterManager pman;
+    //======= MVP Pattern =======//
+    ModelManager     mman;  //-M-//
+    ViewManager      vman;  //-V-//
+    PresenterManager pman;  //-P-//
 };
 
 #endif

@@ -6,11 +6,12 @@
 class MGraph;
 class VGraph : public ViewCenter {
 public:
-    explicit VGraph(const MGraph& model);
+    VGraph(const MGraph& model, const QString& shaderType);
     ~VGraph() override;
 
 private:
     QtNodes::FlowView* view;
+    static bool styled;
 };
 
 #endif

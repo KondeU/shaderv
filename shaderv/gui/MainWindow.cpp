@@ -21,9 +21,13 @@ MainWindow::MainWindow() : vman(*this)
     //auto project = dockerManager.BuildWindow<WProject>(
     //    DockerManager::WindowLocation::BOTTOM, *this);
 
-    mman.BuildModel<MGraph>();
+    mman.BuildModel<MGraphVert>();
+    mman.BuildModel<MGraphFrag>();
 
-    auto graph = vman.BuildViewCenter<VGraph>(*mman.ObtainModel<MGraph>());
+    auto gvert = vman.BuildViewCenter<VGraph>(
+        *mman.ObtainModel<MGraphVert>(), "Vert");
+    auto gfrag = vman.BuildViewCenter<VGraph>(
+        *mman.ObtainModel<MGraphFrag>(), "Frag");
 
     //ui.menuView->addAction(project->GetToggleCheckableAction());
     //ui.menuView->addAction(hierarchy->GetToggleCheckableAction());
