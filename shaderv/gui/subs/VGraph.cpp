@@ -22,9 +22,9 @@ VGraph::VGraph(const MGraph& model, const QString& shaderType)
         R"(
         {
           "ConnectionStyle": {
-            "ConstructionColor"     : "lightgray",
+            "ConstructionColor"     : "darkgray",
             "NormalColor"           : "black",
-            "SelectedColor"         : "lightgray",
+            "SelectedColor"         : "darkgray",
             "SelectedHaloColor"     : "deepskyblue",
             "HoveredColor"          : "deepskyblue",
             "LineWidth"             : 3.0,

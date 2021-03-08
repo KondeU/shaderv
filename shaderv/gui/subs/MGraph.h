@@ -26,6 +26,7 @@ public:
     MGraphVert() = default;
     ~MGraphVert() override = default;
 
+private:
     void RegisterUniqueDataModels(std::shared_ptr<
         QtNodes::DataModelRegistry> registry) const override;
 };
@@ -35,6 +36,7 @@ public:
     MGraphFrag() = default;
     ~MGraphFrag() override = default;
 
+private:
     void RegisterUniqueDataModels(std::shared_ptr<
         QtNodes::DataModelRegistry> registry) const override;
 };
