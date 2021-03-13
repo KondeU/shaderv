@@ -6,6 +6,7 @@
 class NBaseModel : public QtNodes::NodeDataModel {
 public:
     using PortDataType = QtNodes::NodeDataType;
+    using PortData = QtNodes::NodeData;
 
     enum PortInputAutogrowPolicy {
         FIXED,
@@ -92,6 +93,12 @@ public:
     {
         allowResize = allowed;
     }
+
+    virtual void CbSave(QJsonObject& modelJson) const {}
+    virtual void CbRestore(const QJsonObject& modelJson) const {}
+
+    virtual void CbInData(int index, std::shared_ptr<PortData> in) = 0;
+    virtual std::shared_ptr<PortData> CbOutData(int index) = 0;
 
 protected:
     NBaseModel(
@@ -238,6 +245,32 @@ protected:
     bool resizable() const override
     {
         return allowResize;
+    }
+
+    QJsonObject save() const override
+    {
+        QJsonObject modelJson
+            = NodeDataModel::save();
+        CbSave(modelJson);
+        return modelJson;
+    }
+
+    void restore(QJsonObject const& modelJson) override
+    {
+        NodeDataModel::restore(modelJson);
+        CbRestore(modelJson);
+    }
+
+    void setInData(std::shared_ptr<QtNodes::NodeData> data,
+        QtNodes::PortIndex port) override
+    {
+        CbInData(port, data);
+    }
+
+    std::shared_ptr<QtNodes::NodeData> outData(
+        QtNodes::PortIndex port) override
+    {
+        return CbOutData(port);
     }
 
 private:
