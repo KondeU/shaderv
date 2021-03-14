@@ -94,8 +94,13 @@ public:
         allowResize = allowed;
     }
 
+    void SetInternalWidget(QWidget* widget)
+    {
+        internalWidget = widget;
+    }
+
     virtual void CbSave(QJsonObject& modelJson) const {}
-    virtual void CbRestore(const QJsonObject& modelJson) const {}
+    virtual void CbRestore(const QJsonObject& modelJson) {}
 
     virtual void CbInData(int index, std::shared_ptr<PortData> in) = 0;
     virtual std::shared_ptr<PortData> CbOutData(int index) = 0;
@@ -247,6 +252,11 @@ protected:
         return allowResize;
     }
 
+    QWidget* embeddedWidget() override
+    {
+        return internalWidget;
+    }
+
     QJsonObject save() const override
     {
         QJsonObject modelJson
@@ -300,6 +310,8 @@ private:
     QString nodeMessage;
 
     bool allowResize = false;
+
+    QWidget* internalWidget = nullptr;
 };
 
 #endif
