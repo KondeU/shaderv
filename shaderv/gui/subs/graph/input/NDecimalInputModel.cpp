@@ -22,6 +22,7 @@ NDecimalInputModel::NDecimalInputModel()
             SetNodeState(NodeState::WARNING);
             SetNodeMessage("Please input a decimal!");
         }
+        Update(0);
     });
     lineEdit->setText("0.0");
 

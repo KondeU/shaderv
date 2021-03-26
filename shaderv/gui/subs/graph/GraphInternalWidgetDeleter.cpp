@@ -9,8 +9,6 @@ GraphInternalWidgetDeleter& GraphInternalWidgetDeleter::GetDeleter()
 
 void GraphInternalWidgetDeleter::RegisterWidget(QString name, QWidget* widget)
 {
-    std::string s = name.toStdString();
-
     if (widgets.find(name) == widgets.end()) {
         widgets[name].push_back(widget);
     } else {

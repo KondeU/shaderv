@@ -99,6 +99,11 @@ public:
         internalWidget = widget;
     }
 
+    void Update(int outIndex)
+    {
+        emit dataUpdated(outIndex);
+    }
+
     virtual void CbSave(QJsonObject& modelJson) const {}
     virtual void CbRestore(const QJsonObject& modelJson) {}
 
@@ -215,8 +220,7 @@ protected:
         const override
     {
         // The index is no used yet.
-        switch (outputConnectionPolicy)
-        {
+        switch (outputConnectionPolicy) {
         case PortOutputConnectionPolicy::ONE:
             return ConnectionPolicy::One;
         case PortOutputConnectionPolicy::MANY:
