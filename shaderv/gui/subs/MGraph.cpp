@@ -1,5 +1,6 @@
 #include "MGraph.h"
 #include "graph/input/NDecimalInputModel.h"
+#include "graph/input/NIntegerInputModel.h"
 
 bool MGraph::Init()
 {
@@ -15,6 +16,7 @@ MGraph::RegisterDataModels() const
         std::make_shared<QtNodes::DataModelRegistry>();
 
     reg->registerModel<NDecimalInputModel>("Input");
+    reg->registerModel<NIntegerInputModel>("Input");
 
     RegisterUniqueDataModels(reg);
     return reg;
