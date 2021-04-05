@@ -37,7 +37,7 @@ endif()
 file(GLOB_RECURSE GUI *.ui)
 file(GLOB_RECURSE RES *.qrc)
 
-file(GLOB_RECURSE GUI      gui/*.cpp      gui/*.hpp      gui/*.h)
+file(GLOB_RECURSE GUI gui/*.cpp gui/*.hpp gui/*.h gui/*.inl)
 file(GLOB_RECURSE MAT material/*.cpp material/*.hpp material/*.h)
 
 add_executable(shaderv ${GUI} ${RES} ${GUI} ${MAT})

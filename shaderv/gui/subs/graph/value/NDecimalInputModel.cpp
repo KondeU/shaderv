@@ -2,7 +2,7 @@
 #include "../GraphInternalWidgetDeleter.h"
 
 NDecimalInputModel::NDecimalInputModel()
-    : NBaseModel(0, 1, "Decimal(Const)")
+    : NBaseModel(0, 1, "Const Decimal")
 {
     lineEdit = QT_NEW QLineEdit;
     doubleValidator = QT_NEW QDoubleValidator(lineEdit);

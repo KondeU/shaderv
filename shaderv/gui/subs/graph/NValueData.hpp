@@ -6,16 +6,18 @@
 template <typename T, unsigned int C1, unsigned int C2>
 class NValueData : public QtNodes::NodeData {
 public:
+    using RawType = T;
+
     template <unsigned int G1, unsigned int G2>
-    void Set(T t)
+    void Set(RawType data)
     {
         static_assert((G1 < C1) && (G2 < C2),
             "Template argument error");
-        value[C2 * G2 + G1] = t;
+        value[C2 * G2 + G1] = data;
     }
 
     template <unsigned int G1, unsigned int G2>
-    T Get() const
+    RawType Get() const
     {
         static_assert((G1 < C1) && (G2 < C2),
             "Template argument error");
@@ -23,19 +25,32 @@ public:
     }
 
     template <unsigned int G = 0>
-    void Set(T t)
+    void Set(RawType data)
     {
         static_assert(G < C1 * C2,
             "Template argument error");
-        value[G] = t;
+        value[G] = data;
     }
 
     template <unsigned int G = 0>
-    T Get() const
+    RawType Get() const
     {
         static_assert(G < C1 * C2,
             "Template argument error");
         return value[G];
+    }
+
+    const std::vector<RawType>& operator()() const
+    {
+        return value;
+    }
+
+    void operator()(const std::vector<RawType>& datas)
+    {
+        size_t size = std::min(value.size(), datas.size());
+        for (size_t n = 0; n < size; n++) {
+            value[n] = datas[n];
+        }
     }
 
 protected:
@@ -47,7 +62,7 @@ protected:
     }
 
 private:
-    std::vector<T> value;
+    std::vector<RawType> value;
 };
 
 #define NVD_IMPL(nvdc, nvdt, cnt1, cnt2, idsz, name) \

@@ -14,8 +14,8 @@ public:
     };
 
     enum class PortOutputConnectionPolicy {
-        ONE,
-        MANY
+        MANY,
+        ONE
     };
 
     enum class NodeState {
@@ -221,10 +221,10 @@ protected:
     {
         // The index is no used yet.
         switch (outputConnectionPolicy) {
-        case PortOutputConnectionPolicy::ONE:
-            return ConnectionPolicy::One;
         case PortOutputConnectionPolicy::MANY:
             return ConnectionPolicy::Many;
+        case PortOutputConnectionPolicy::ONE:
+            return ConnectionPolicy::One;
         default:
             break;
         }
@@ -308,7 +308,7 @@ private:
     PortInputAutogrowPolicy inputAutogrowPolicy
         = PortInputAutogrowPolicy::FIXED;
     PortOutputConnectionPolicy outputConnectionPolicy
-        = PortOutputConnectionPolicy::ONE;
+        = PortOutputConnectionPolicy::MANY;
 
     NodeState nodeState = NodeState::NORMAL;
     QString nodeMessage;

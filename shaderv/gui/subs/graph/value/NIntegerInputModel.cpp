@@ -2,7 +2,7 @@
 #include "../GraphInternalWidgetDeleter.h"
 
 NIntegerInputModel::NIntegerInputModel()
-    : NBaseModel(0, 1, "Integer(Const)")
+    : NBaseModel(0, 1, "Const Integer")
 {
     lineEdit = QT_NEW QLineEdit;
     integerValidator = QT_NEW QIntValidator(lineEdit);
